@@ -6,11 +6,19 @@
 
 ## 高德天气接口
 
-- [接口文档](https://lbs.amap.com/api/webservice/guide/api-advanced/weatherinfo)
+### 接口文档
 
-- [管理后台](https://console.amap.com/dev/key/app)
+👉 https://lbs.amap.com/api/webservice/guide/api-advanced/weatherinfo)
 
-**示例**
+### 管理后台
+
+👉 https://console.amap.com/dev/key/app
+
+### 示例
 ```shell
 curl "https://restapi.amap.com/v3/weather/weatherInfo?key=您的key&city=110101"
 ```
+
+## 推荐阅读
+- [官网 - Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro)
+- [Github - modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk)
