@@ -1,5 +1,6 @@
-import { logger } from "../utils/logger.ts";
+import path from "path";
 import fs from 'fs';
+import { logger } from "../utils/logger.ts";
 
 export interface WeatherInfo {
     status: string;
@@ -23,7 +24,9 @@ export interface WeatherInfo {
 
 export async function getWeatherByCity(city: string): Promise<string> {
     const apiKey = process.env.API_KEY;
-    const weatherCodes = JSON.parse(fs.readFileSync('weather.json', 'utf8'));
+    const __dirname = path.dirname(new URL(import.meta.url).pathname);
+    const filepath = path.join(__dirname, './weather.json');
+    const weatherCodes = JSON.parse(fs.readFileSync(filepath, 'utf8'));
 
     console.log(`getWeatherByCity, city=${city}, apiKey=${apiKey?.slice(0,4) + '****'}`);
     let cityId = 0;
