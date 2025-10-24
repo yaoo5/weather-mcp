@@ -17,13 +17,17 @@ export async function startServer() {
     console.log(`weather-mcp start, mode=${isStdioMode?'stdio':"streamable-http"}`)
     // 如果是stdio模式
     if (isStdioMode) {
+        console.log(`🐬 weather-mcp start, stdio mode`);
         // step 2: 启动stdio模式的mcp server
         const stdioServerTransport = new StdioServerTransport();
         await mcpServer.connect(stdioServerTransport);
     // 如果是 StreamableHTTPServer 模式
     } else {
+        console.log(`🐬 weather-mcp start, streamable-http mode`);
         const app = express();
-        app.use(express.json());
+
+        // Parse JSON requests for the Streamable HTTP endpoint only, will break SSE endpoint
+        app.use("/mcp", express.json());
         app.post('/mcp', async (req, res) => {
             const transport = new StreamableHTTPServerTransport({
                 sessionIdGenerator: undefined
@@ -46,6 +50,7 @@ export async function startServer() {
 
         // Legacy message endpoint for older clients
         app.post('/messages', async (req, res) => {
+            console.log(`[${new Date().toISOString()}]post /messages }`)
             const sessionId = req.query.sessionId as string;
             const transport = transports.sse[sessionId];
             if (transport) {

@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { getWeatherByCity } from "./weather.ts";
+import { getWeatherByCity } from "./services/weather.ts";
 
 // 创建一个MCP Server
 export function createMcpServer() {
@@ -12,7 +12,7 @@ export function createMcpServer() {
     mcpServer.registerTool(
         "get_weather_by_city", {
             title: "Get Weather by City",
-            description: "Get the weather for a location",
+            description: "Get the weather for a city",
             inputSchema: {
                 city: z.string().describe("The city name"),
             },
@@ -20,9 +20,10 @@ export function createMcpServer() {
                 weather: z.string()
             },
         }, async ({ city }) => {
-            console.log(city);
+            console.log(`get_weather_by_city tool, city=${city}`);
             const weather = await getWeatherByCity(city);
-            const output = { weather: `今天天气${weather}。` }
+            console.log(`weather=${weather}`);
+            const output = { weather: `${weather}。` }
 
             return {
                 content: [{ type: "text", text: JSON.stringify(output) }],
