@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { getWeatherByCity } from "./services/weather.ts";
+import { getWeatherByCity } from "./services/weather";
 
 // 创建一个MCP Server
 export function createMcpServer() {
