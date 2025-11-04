@@ -1,6 +1,6 @@
 {
   "name": "amap-weather-mcp",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "搭建一个天气mcp，使用的是高德接口",
   "bin": {
     "weather-mcp": "./build/index.js"
