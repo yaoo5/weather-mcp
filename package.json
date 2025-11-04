@@ -1,5 +1,5 @@
 {
-  "name": "@yaoo5/weather-mcp",
+  "name": "amap-weather-mcp",
   "version": "1.0.0",
   "description": "搭建一个天气mcp，使用的是高德接口",
   "bin": {
@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "publish": "npm publish --access public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
