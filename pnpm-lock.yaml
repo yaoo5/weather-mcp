@@ -17,6 +17,9 @@ importers:
       '@types/node':
         specifier: ^24.9.1
         version: 24.10.0
+      amap-weather-mcp:
+        specifier: ^0.0.1
+        version: 0.0.1
       axios:
         specifier: ^1.12.2
         version: 1.13.1
@@ -419,6 +422,10 @@ packages:
 
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
+
+  amap-weather-mcp@0.0.1:
+    resolution: {integrity: sha512-+ZeTRr6SmSivITbQQN1ZYKHUuECT6dBXlB0e8S/5UF+mvXjIYpDlr26cStkxSEgdllyy2Jx+f2oDBhTc0EtfGw==}
+    hasBin: true
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1412,6 +1419,24 @@ snapshots:
       fast-uri: 3.1.0
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
+
+  amap-weather-mcp@0.0.1:
+    dependencies:
+      '@modelcontextprotocol/sdk': 1.21.0
+      '@types/express': 5.0.5
+      '@types/node': 24.10.0
+      axios: 1.13.1
+      dayjs: 1.11.19
+      express: 5.1.0
+      ts-node: 10.9.2(@types/node@24.10.0)(typescript@5.9.3)
+      typescript: 5.9.3
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - '@cfworker/json-schema'
+      - '@swc/core'
+      - '@swc/wasm'
+      - debug
+      - supports-color
 
   ansi-regex@5.0.1: {}
 
