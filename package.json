@@ -1,0 +1,38 @@
+{
+  "name": "amap-weather-mcp",
+  "version": "1.0.0",
+  "description": "搭建一个天气mcp，使用的是高德接口",
+  "bin": {
+    "weather-mcp": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "publish": "npm publish --access public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaoo5/weather-mcp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaoo5/weather-mcp/issues"
+  },
+  "homepage": "https://github.com/yaoo5/weather-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.1",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.9.1",
+    "axios": "^1.12.2",
+    "dayjs": "^1.11.18",
+    "express": "^5.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0"
+  }
+}
