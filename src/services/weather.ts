@@ -1,6 +1,6 @@
-import path from "path";
-import fs from 'fs';
+
 import { logger } from "../utils/logger";
+import weatherData from "./weather-data";
 
 export interface WeatherInfo {
     status: string;
@@ -23,23 +23,22 @@ export interface WeatherInfo {
 }
 
 export async function getWeatherByCity(city: string): Promise<string> {
-    const apiKey = process.env.API_KEY;
-    const __dirname = path.dirname(new URL(import.meta.url).pathname);
-    const filepath = path.join(__dirname, './weather.json');
-    const weatherCodes = JSON.parse(fs.readFileSync(filepath, 'utf8'));
+    const argv = process.argv;
+    const apiKey = argv.find(arg => arg.startsWith('API_KEY='))?.split('=')[1];
 
     console.log(`getWeatherByCity, city=${city}, apiKey=${apiKey?.slice(0,4) + '****'}`);
     let cityId = 0;
-    for (const cityKey in weatherCodes) {
+    for (const cityKey in weatherData) {
         if (cityKey?.includes(city)) {
-            cityId = Number(weatherCodes[cityKey]);
+            cityId = Number(weatherData[cityKey]);
             break;
         }
     }
 
     logger.info(`getWeatherByCity, ${city} => ${cityId}`)
     if (!cityId) {
-        throw new Error(`❌ City ${city} not found`);
+        // throw new Error(`❌ City ${city} not found`);
+        return `N/A, 天气信息获取失败. city=${city}`;
     }
 
     const baseUrl = "https://restapi.amap.com";
@@ -47,13 +46,14 @@ export async function getWeatherByCity(city: string): Promise<string> {
     const url = `${baseUrl}/v3/weather/weatherInfo?key=${apiKey}&city=${cityId}&extensions=base`;
     const response = await fetch(url);
     if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+        // throw new Error(`Request failed with status ${response.status}`);
+        return `N/A, 天气信息获取失败. status=${response.status}`;
     }
     const data = await response.json();
 
     console.log(`getWeatherByCity success}, ${JSON.stringify(data)}`);
     const live = data?.lives?.[0];
-    if (!live) return 'N/A';
+    if (!live) return `N/A, 天气信息获取失败. json_size=${Object.keys(data || {}).length}`;    
 
     return `${live.city} ${live.weather} ${live.temperature}℃ ${live.winddirection}风${live.windpower} 湿度${live.humidity}% 报告时间:${live.reporttime}`;
 }

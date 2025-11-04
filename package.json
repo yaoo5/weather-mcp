@@ -2,14 +2,13 @@
   "name": "@yaoo5/weather-mcp",
   "version": "1.0.0",
   "description": "搭建一个天气mcp，使用的是高德接口",
-  "main": "index.js",
   "bin": {
     "weather-mcp": "./build/index.js"
   },
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yaoo5/weather-mcp.git"
@@ -31,5 +30,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0"
   }
 }
